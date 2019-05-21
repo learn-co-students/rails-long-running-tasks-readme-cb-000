@@ -1,6 +1,14 @@
 <h1>Our Customers</h1>
+<%= form_tag customers_upload_path, multipart: true do %>
+    <%= file_field_tag :leads %>
+    <%= submit_tag "Import Leads" %>
+    <% end %> 
 <ul>
 <% @customers.each do |customer| %>
   <li><%= "#{customer.first_name} #{customer.last_name} - #{customer.email}" %></li>
 <% end %>
 </ul>
+
+# Finally, let's get into our controller and handle this file upload.
+
+# To do that, we first need to examine the file. Check out db/customers.csv. The first row defines the fields, and isn't part of the dataset, so that's called a header.
